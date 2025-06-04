@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fitur Premium - Bot WhatsApp Canggih</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #111827; /* Dark blue-gray */
+            color: #F3F4F6; /* Light gray */
+        }
+        .premium-header {
+            background: linear-gradient(90deg, #FBBF24, #F59E0B); /* Gold gradient */
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .feature-card {
+            background-color: #1F2937; /* Darker card background */
+            border: 1px solid #374151; /* Subtle border */
+            transition: all 0.3s ease-in-out;
+        }
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+        }
+        .feature-title {
+            color: #FBBF24; /* Gold accent */
+        }
+        .feature-command {
+            background-color: #374151; /* Darker gray for command background */
+            color: #D1D5DB; /* Lighter gray for command text */
+            padding: 8px 12px;
+            border-radius: 6px;
+            font-family: 'Courier New', Courier, monospace;
+            display: inline-block;
+            margin-bottom: 10px;
+        }
+        .details {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s ease-out;
+        }
+        .details.open {
+            max-height: 1000px; /* Adjust as needed */
+            transition: max-height 0.7s ease-in;
+        }
+        .parameter {
+            color: #F59E0B; /* Lighter gold for parameters */
+            font-weight: 500;
+        }
+        .description-point {
+            color: #9CA3AF; /* Medium gray for descriptions */
+        }
+        .example-usage {
+            background-color: #2c3e50; /* Dark slate blue */
+            color: #ecf0f1; /* Clouds white */
+            padding: 10px;
+            border-radius: 5px;
+            margin-top: 10px;
+            font-style: italic;
+        }
+        .important-note {
+            color: #FCA5A5; /* Light red for important notes */
+            font-weight: 500;
+        }
+        .buy-button {
+            background: linear-gradient(90deg, #FBBF24, #F59E0B);
+            color: #111827;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+        .buy-button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 15px #FBBF24;
+        }
+        .accordion-icon {
+            transition: transform 0.3s ease;
+        }
+        .accordion-icon.rotate-180 {
+            transform: rotate(180deg);
+        }
+    </style>
+</head>
+<body>
+    <div class="container mx-auto p-4 md:p-8">
+        <header class="text-center mb-12">
+            <h1 class="text-4xl md:text-5xl font-bold premium-header">Fitur Premium Bot WhatsApp</h1>
+            <p class="text-lg text-gray-400 mt-4">Maksimalkan potensi WhatsApp Anda dengan fitur-fitur canggih dan eksklusif.</p>
+        </header>
+
+        <div id="featuresContainer" class="space-y-6">
+            <!-- Fitur akan dimasukkan di sini oleh JavaScript -->
+        </div>
+
+        <footer class="text-center mt-16">
+            <h2 class="text-3xl font-semibold mb-6 premium-header">Siap Tingkatkan Produktivitas Anda?</h2>
+            <p class="text-gray-400 mb-8 text-lg">Dapatkan akses ke semua fitur premium ini dan rasakan perbedaannya!</p>
+            <a href="https://wa.me/62895415321070?text=BANG%20MAU%20BELI%20PREMIUM" target="_blank" class="buy-button inline-block font-bold py-3 px-8 rounded-lg text-xl shadow-lg">
+                Beli Script Premium Sekarang!
+            </a>
+            <p class="text-sm text-gray-500 mt-8">&copy; 2025 Nama Perusahaan Anda. Hak Cipta Dilindungi.</p>
+        </footer>
+    </div>
+
+    <script>
+        const featuresData = [
+            {
+                command: ".buatgc &lt;jeda&gt; &lt;nama&gt; &lt;jumlah&gt;",
+                title: "Pembuat Grup Otomatis (buatgc)",
+                details: [
+                    { type: "Fungsi", text: "Membuat sejumlah grup WhatsApp baru secara berurutan." },
+                    { type: "Parameter", name: "&lt;jeda&gt;", text: "Angka (dalam detik) waktu tunggu antara pembuatan grup. Minimal biasanya 3 detik." },
+                    { type: "Parameter", name: "&lt;nama&gt;", text: "Nama dasar grup. Bot akan menambahkan nomor urut (misal, 'Diskusi 1', 'Diskusi 2')." },
+                    { type: "Parameter", name: "&lt;jumlah&gt;", text: "Angka yang menentukan berapa banyak grup yang ingin dibuat." },
+                    { type: "Cara Kerja", text: "Bot membuat grup satu per satu dengan jeda yang ditentukan. Bot otomatis menjadi anggota dan admin." },
+                    { type: "Contoh", text: ".buatgc 5 TimProyek 3 (Membuat 3 grup 'TimProyek 1-3' dengan jeda 5 detik)." }
+                ]
+            },
+            {
+                command: ".buatgcv2 &lt;jeda&gt; &lt;nama&gt; &lt;jumlah&gt; &lt;nomor&gt;",
+                title: "Pembuat Grup dengan Anggota (buatgcv2)",
+                details: [
+                    { type: "Fungsi", text: "Mirip 'buatgc', dengan tambahan kemampuan memasukkan nomor telepon sebagai anggota saat grup dibuat." },
+                    { type: "Parameter", name: "&lt;jeda&gt;, &lt;nama&gt;, &lt;jumlah&gt;", text: "Sama seperti pada 'buatgc'." },
+                    { type: "Parameter", name: "&lt;nomor&gt;", text: "Satu atau beberapa nomor telepon format internasional (misal, 62812xxxx). Jika lebih dari satu, pisahkan dengan koma tanpa spasi." },
+                    { type: "Cara Kerja", text: "Selain membuat grup, bot mencoba menambahkan semua nomor yang disebutkan ke setiap grup. Bot juga menjadi anggota dan admin." },
+                    { type: "Contoh", text: ".buatgcv2 7 RapatInternal 2 628123456789,628987654321" }
+                ]
+            },
+            {
+                command: ".buatgcv3 &lt;jeda&gt; &lt;nama&gt; &lt;jumlah&gt;",
+                title: "Pembuat Grup dengan Ekspor Link (buatgcv3)",
+                details: [
+                    { type: "Fungsi", text: "Membuat grup, mengumpulkan link undangan, menyimpannya dalam file .txt, dan mengirim file tersebut." },
+                    { type: "Parameter", name: "&lt;jeda&gt;, &lt;nama&gt;, &lt;jumlah&gt;", text: "Sama seperti pada 'buatgc'." },
+                    { type: "Cara Kerja", text: "Setelah setiap grup dibuat, bot mengambil link undangannya. Semua link (format: NOMOR. (LINK)) ditulis ke file .txt dan dikirim." },
+                    { type: "Format Link di File", text: "1. https://chat.whatsapp.com/linkgrup1<br>2. https://chat.whatsapp.com/linkgrup2..." }
+                ]
+            },
+            // Fitur "salinlink" yang asli telah dihapus
+            {
+                command: ".salinlinkv2",
+                title: "Salin Link Grup ke File (salinlinkv2)",
+                details: [
+                    { type: "Fungsi", text: "Mengumpulkan link undangan dari grup di mana bot menjadi admin, menyimpannya ke dalam sebuah file .txt dengan format bernomor dan jeda 10 detik saat mengumpulkan setiap link, lalu mengirimkan file tersebut ke chat." },
+                    { type: "Cara Kerja", text: "Bot akan mencari semua grup tempat ia menjadi admin, mengambil link undangannya satu per satu dengan jeda 10 detik antara pengambilan setiap link. Semua link tersebut (dengan format NOMOR. (LINK)) ditulis ke dalam file teks dan dikirimkan." },
+                    { type: "Format Link di File", text: "Sama seperti 'buatgcv3'." }
+                ]
+            },
+            {
+                command: ".salinlinkv3 &lt;jeda&gt; &lt;nama_grup_dicari&gt;",
+                title: "Salin Link Grup Spesifik ke File (salinlinkv3)",
+                details: [
+                    { type: "Fungsi", text: "Mencari grup berdasarkan kata kunci pada namanya, di mana bot menjadi admin. Kemudian, bot akan mengumpulkan link undangan dari grup-grup yang cocok tersebut dengan jeda yang ditentukan, menyimpannya ke dalam file .txt (format bernomor), dan mengirimkan file tersebut." },
+                    { type: "Parameter", name: "&lt;jeda&gt;", text: "Angka (dalam detik) sebagai waktu tunggu antara pengambilan link satu grup dengan grup berikutnya yang cocok." },
+                    { type: "Parameter", name: "&lt;nama_grup_dicari&gt;", text: "Kata atau frasa yang akan dicari dalam nama-nama grup. Bot akan mencari grup yang namanya mengandung kata kunci ini." },
+                    { type: "Cara Kerja", text: "Bot akan memfilter grup berdasarkan nama dan status admin bot. Untuk setiap grup yang cocok, link undangannya akan diambil dengan jeda yang ditentukan. Hasilnya (format NOMOR. (LINK)) disimpan dalam file .txt dan dikirim." },
+                    { type: "Format Link di File", text: "Sama seperti 'buatgcv3'." }
+                ]
+            },
+            {
+                command: ".link (digunakan di dalam grup)",
+                title: "Dapatkan Link Grup Saat Ini (link)",
+                details: [
+                    { type: "Fungsi", text: "Perintah ini khusus digunakan ketika Anda berada di dalam sebuah grup WhatsApp. Bot akan mengambil dan mengirimkan link undangan (invite link) untuk grup tersebut." },
+                    { type: "Cara Kerja", text: "Anda mengetik .link di dalam grup, dan bot akan merespons dengan link undangan grup tempat Anda mengirim perintah. Bot biasanya harus menjadi anggota (dan terkadang admin) untuk bisa mengambil link ini." }
+                ]
+            },
+            {
+                command: ".status",
+                title: "Cek Status Bot (status)",
+                details: [
+                    { type: "Fungsi", text: "Menampilkan informasi status tentang bot, terutama yang berkaitan dengan grup dan proses yang sedang berjalan." },
+                    { type: "Cara Kerja", text: "Bot akan memberikan laporan yang berisi: Jumlah total grup yang dimasuki oleh bot, Jumlah grup di mana bot memiliki status sebagai admin, Mode operasi bot (Normal atau Dihentikan Owner), Informasi apakah ada proses seperti pembuatan grup, pengiriman link, penambahan anggota, atau broadcast yang sedang aktif." }
+                ]
+            },
+            {
+                command: ".add &lt;nomor1&gt; [nomor2 ...]",
+                title: "Tambah Anggota ke Grup (add)",
+                details: [
+                    { type: "Fungsi", text: "Menambahkan satu atau lebih anggota ke dalam grup tempat perintah ini diketikkan." },
+                    { type: "Cara Penggunaan", text: ".add 62812xxxxxxx (satu nomor)<br>.add 62812xxxxxxx 62813xxxxxxx (beberapa nomor di baris yang sama, dipisah spasi)<br>Atau dalam satu pesan:<br>.add 62812xxxxxxx<br>62813xxxxxxx" },
+                    { type: "Cara Kerja", text: "Bot akan memvalidasi dan memformat nomor-nomor yang diberikan. Jika hanya satu nomor, penambahan dilakukan segera. Jika lebih dari satu nomor, akan ada jeda 30 detik antara penambahan satu anggota dengan anggota berikutnya. Bot akan memberikan laporan detail untuk setiap nomor (berhasil, sudah ada, gagal karena privasi, dll.)." },
+                    { type: "Penting", text: "Perintah ini hanya bisa digunakan di dalam grup." }
+                ]
+            },
+            {
+                command: ".addfc (reply atau kirim file .csv)",
+                title: "Tambah Anggota Massal dari CSV (addfc)",
+                details: [
+                    { type: "Fungsi", text: "Menambahkan anggota secara massal ke dalam grup tempat perintah ini diketikkan, berdasarkan daftar nomor telepon yang ada di dalam sebuah file CSV." },
+                    { type: "Cara Penggunaan", text: "Anda bisa mengirimkan file .csv langsung ke grup dengan caption .addfc, atau Anda bisa me-reply (membalas) pesan yang berisi file .csv dengan mengetikkan .addfc." },
+                    { type: "Format File CSV", text: "File CSV harus berisi nomor-nomor telepon yang ingin ditambahkan. Nomor bisa dipisahkan per baris, atau dengan koma/titik koma. Format nomor sebaiknya internasional (misal 628xxxx)." },
+                    { type: "Cara Kerja", text: "Bot akan membaca nomor-nomor dari file CSV. Kemudian, satu per satu nomor akan dicoba untuk ditambahkan ke dalam grup dengan jeda 10 detik antar penambahan. Setelah selesai, bot akan memberikan laporan detail berapa nomor yang berhasil ditambahkan, gagal, atau sudah ada/tidak bisa ditambahkan karena privasi. Perintah ini hanya bisa digunakan di dalam grup." }
+                ]
+            },
+            {
+                command: ".cvtofile &lt;group_id@g.us ATAU link_invite_grup&gt;",
+                title: "Ekspor Anggota Grup ke CSV (cvtofile)",
+                details: [
+                    { type: "Fungsi", text: "Mengambil daftar semua nomor anggota dari grup target (yang ditentukan melalui ID grup atau link undangan) dan menyimpannya ke dalam sebuah file .csv. File ini kemudian dikirimkan ke chat." },
+                    { type: "Parameter", name: "&lt;group_id@g.us ATAU link_invite_grup&gt;", text: "Anda bisa menyediakan ID grup langsung (misalnya 1234567890@g.us) atau link undangan grup (misalnya https://chat.whatsapp.com/Blablabla)." },
+                    { type: "Cara Kerja", text: "Bot akan mencoba mengakses informasi anggota dari grup target. Jika berhasil (bot mungkin perlu menjadi anggota grup tersebut untuk mendapatkan daftar lengkap), semua nomor anggota akan diekstrak (hanya angkanya) dan ditulis ke dalam file .csv, satu nomor per baris." },
+                    { type: "Penting", text: "Kemampuan bot untuk mengambil anggota dari grup yang tidak diikutinya (hanya via link) mungkin terbatas." }
+                ]
+            },
+            {
+                command: ".bc &lt;group_id@g.us ATAU link_invite_grup&gt; &lt;jeda&gt; &lt;pesan&gt;",
+                title: "Broadcast ke Anggota Grup (bc)",
+                details: [
+                    { type: "Fungsi", text: "Mengirimkan pesan broadcast (pesan pribadi) satu per satu ke semua anggota grup target." },
+                    { type: "Parameter", name: "&lt;group_id@g.us ATAU link_invite_grup&gt;", text: "ID grup atau link undangan grup yang anggotanya akan menerima broadcast." },
+                    { type: "Parameter", name: "&lt;jeda&gt;", text: "Angka (dalam detik) sebagai waktu tunggu antara pengiriman pesan ke satu anggota dengan anggota berikutnya." },
+                    { type: "Parameter", name: "&lt;pesan&gt;", text: "Teks pesan yang ingin Anda kirimkan." },
+                    { type: "Cara Kerja", text: "Bot akan mengambil daftar anggota dari grup target. Kemudian, bot akan mengirimkan &lt;pesan&gt; sebagai chat pribadi ke setiap anggota satu per satu, dengan jeda waktu yang telah ditentukan." },
+                    { type: "Peringatan", text: "Gunakan fitur ini dengan sangat bijak untuk menghindari dianggap spam. Jeda yang cukup panjang sangat disarankan." },
+                    { type: "Penting", text: "Bot mungkin perlu menjadi anggota grup target untuk bisa mengambil daftar anggota." }
+                ]
+            },
+            {
+                command: ".bctofile &lt;jeda&gt; &lt;pesan&gt; (reply atau kirim file .csv)",
+                title: "Broadcast ke Nomor dari CSV (bctofile)",
+                details: [
+                    { type: "Fungsi", text: "Mengirimkan pesan broadcast ke daftar nomor telepon yang ada di dalam sebuah file CSV." },
+                    { type: "Cara Penggunaan", text: "Anda harus me-reply sebuah file .csv (yang berisi daftar nomor tujuan) atau mengirim file .csv dengan caption .bctofile &lt;jeda&gt; &lt;pesan&gt;." },
+                    { type: "Parameter", name: "&lt;jeda&gt;", text: "Angka (dalam detik) sebagai waktu tunggu antara pengiriman pesan ke satu nomor dengan nomor berikutnya." },
+                    { type: "Parameter", name: "&lt;pesan&gt;", text: "Teks pesan yang ingin Anda kirimkan ke semua nomor dalam file CSV." },
+                    { type: "Cara Kerja", text: "Bot akan membaca nomor-nomor dari file CSV yang diberikan. Kemudian, bot akan mengirimkan &lt;pesan&gt; sebagai chat pribadi ke setiap nomor yang valid satu per satu, dengan jeda waktu yang telah ditentukan. Akan ada laporan hasil broadcast (jumlah terkirim dan gagal)." },
+                    { type: "Peringatan", text: "Sama seperti 'bc', gunakan dengan bijak untuk menghindari pemblokiran." }
+                ]
+            }
+        ];
+
+        const featuresContainer = document.getElementById('featuresContainer');
+
+        featuresData.forEach(feature => {
+            const card = document.createElement('div');
+            card.className = 'feature-card rounded-lg shadow-lg p-6 cursor-pointer';
+
+            let detailsHtml = '<ul class="mt-4 space-y-2">';
+            feature.details.forEach(detail => {
+                detailsHtml += '<li class="text-sm">';
+                if (detail.type === "Parameter") {
+                    detailsHtml += `<strong class="description-point">${detail.type} <span class="parameter">${detail.name}</span>:</strong> ${detail.text}`;
+                } else if (detail.type === "Contoh") {
+                     detailsHtml += `<strong class="description-point">${detail.type}:</strong> <div class="example-usage">${detail.text}</div>`;
+                } else if (detail.type === "Penting" || detail.type === "Peringatan") {
+                    detailsHtml += `<strong class="important-note">${detail.type}:</strong> ${detail.text}`;
+                }
+                 else {
+                    detailsHtml += `<strong class="description-point">${detail.type}:</strong> ${detail.text}`;
+                }
+                detailsHtml += '</li>';
+            });
+            detailsHtml += '</ul>';
+
+            card.innerHTML = `
+                <div class="flex justify-between items-center">
+                    <div>
+                        <h3 class="text-xl font-semibold feature-title">${feature.title}</h3>
+                        <code class="feature-command text-sm">${feature.command}</code>
+                    </div>
+                    <svg class="accordion-icon w-6 h-6 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                </div>
+                <div class="details">
+                    ${detailsHtml}
+                </div>
+            `;
+            featuresContainer.appendChild(card);
+
+            card.addEventListener('click', () => {
+                const detailsDiv = card.querySelector('.details');
+                const icon = card.querySelector('.accordion-icon');
+                detailsDiv.classList.toggle('open');
+                icon.classList.toggle('rotate-180');
+            });
+        });
+
+    </script>
+</body>
+</html>
